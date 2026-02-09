@@ -20,8 +20,8 @@ export class LeaderboardService extends LeaderboardContract {
       .addSelect('SUM(s.salesCount)', 'totalSalesCount')
       .from('sales', 's')
       .groupBy('s.agentName')
-      .orderBy('totalSalesAmount', 'DESC')
-      .addOrderBy('agentName', 'ASC')
+      .orderBy('"totalSalesAmount"', 'DESC')
+      .addOrderBy('"agentName"', 'ASC')
       .limit(limit)
       .offset(offset);
 
@@ -30,6 +30,8 @@ export class LeaderboardService extends LeaderboardContract {
       totalSalesAmount: number;
       totalSalesCount: number;
     }>()
+
+    console.log(rows);
 
     let rank = 0;
     let prevAmount: number | null = null;

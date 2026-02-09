@@ -1,11 +1,13 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import LeaderboardContract from './contract/leaderboard.contract';
+import { ApiQuery } from '@nestjs/swagger';
 
 @Controller('leaderboard')
 export class LeaderboardController {
-  constructor(private readonly leaderboard: LeaderboardContract) {
-  }
+  constructor(private readonly leaderboard: LeaderboardContract) {}
 
+  @ApiQuery({ name: 'limit', required: false })
+  @ApiQuery({ name: 'offset', required: false })
   @Get()
   async getLeaderboard(
     @Query('limit') limit?: string,
@@ -20,7 +22,6 @@ export class LeaderboardController {
       limit: l,
       offset: o,
       results: data,
-    }
-
+    };
   }
 }

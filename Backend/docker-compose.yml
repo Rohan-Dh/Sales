@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:16
+    container_name: sales_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres1122
+      POSTGRES_PASSWORD: postgres1122
+      POSTGRES_DB: sales
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:
