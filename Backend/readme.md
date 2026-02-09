@@ -57,7 +57,7 @@ Make sure you have a docker installed first, this api service requires postgreSq
 ### Local Development
 ```bash
 git clone https://github.com/Rohan-Dh/Sales.git
-cd Sales
+cd Sales/Backend/
 ```
 after this change the file name `.env.example` to `.env`. Then run,
 
