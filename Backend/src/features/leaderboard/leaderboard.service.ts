@@ -13,30 +13,29 @@ export class LeaderboardService extends LeaderboardContract {
     super();
   }
   async getLeaderBoard(limit: number = 50, offset: number = 0): Promise<LeaderboardRow[]> {
-    const query = this.saleRepo
-      .createQueryBuilder()
+    const data = await this.saleRepo
+      .createQueryBuilder('s')
       .select('s.agentName', 'agentName')
-      .addSelect('SUM(CAST(s.amountSold AS numeric))', 'totalSalesAmount')
+      .addSelect('SUM(s.amountSold)', 'totalSalesAmount')
       .addSelect('SUM(s.salesCount)', 'totalSalesCount')
-      .from('sales', 's')
       .groupBy('s.agentName')
       .orderBy('"totalSalesAmount"', 'DESC')
       .addOrderBy('"agentName"', 'ASC')
       .limit(limit)
-      .offset(offset);
+      .offset(offset)
+      .getRawMany<{
+        agentName: string;
+        totalSalesAmount: string;
+        totalSalesCount: string;
+      }>();
 
-    const rows = await query.getRawMany<{
-      agentName: string;
-      totalSalesAmount: number;
-      totalSalesCount: number;
-    }>()
-
-    console.log(rows);
+    // console.log(data);
 
     let rank = 0;
     let prevAmount: number | null = null;
 
-    return rows.map((r, idx) => {
+    return data.map((r) => {
+      console.log(r);
       const amount = Number(r.totalSalesAmount);
       if (prevAmount === null || amount !== prevAmount) rank += 1;
       prevAmount = amount;
