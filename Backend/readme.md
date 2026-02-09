@@ -1,4 +1,4 @@
-**Swagger docs** available at `https://sales-dj88.onrender.com/swagger/api`
+**Swagger docs** available at `https://sales-ixsc.onrender.com/swagger/api`
 ---
 ## Table of Contents
 - [Tech Stack](#tech-stack)
