@@ -8,7 +8,7 @@ import { ConfigService } from '@nestjs/config';
       inject: [ConfigService],
       useFactory: (config: ConfigService): TypeOrmModule => ({
         type: 'postgres',
-        url: config.getOrThrow<string>('config.database.url'),
+        url: config.getOrThrow<string>('database.url'),
         autoLoadEntities: true,
         synchronize: true,
       }),
