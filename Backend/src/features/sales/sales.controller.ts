@@ -17,7 +17,7 @@ export class SalesController {
     }
   }
 
-  @Post()
+  @Post('batch')
   async manySale(@Body() dto: CreateSaleBatchDto) {
     const manySale = await this.sale.createMany(dto.records);
     return {
