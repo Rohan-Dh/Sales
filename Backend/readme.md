@@ -1,8 +1,9 @@
-**Swagger docs** available at `https://sales-pdsl.onrender.com/swagger/api`
+## Goto `https://sales-pdsl.onrender.com/swagger/api` or [click Here](https://sales-pdsl.onrender.com/swagger/api) to find swagger doc.
+
 ---
+
 ## Table of Contents
 - [Tech Stack](#tech-stack)
-- [Features](#features)
 - [Architecture](#architecture)
 - [Project Setup](#project-setup)
     - [Local Development](#local-development)
@@ -17,20 +18,6 @@
 - **TypeORM**
 - **class-validator / class-transformer** (validation)
 - **Swagger** (OpenAPI docs)
-
----
-
-## Features
-- Accepts sales records containing:
-    - `agentName` (selling agent’s name)
-    - `amountSold` (sales amount)
-    - `salesCount` (number of deals/sales made in that record)
-- Multiple records can exist for the same agent.
-- Leaderboard shows:
-    - rank (1, 2, 3…)
-    - agent name
-    - total sales amount
-    - total sales count
 
 ---
 
@@ -97,7 +84,7 @@ With the swagger. Use the api endpoint `/sales/batch` to seed these data at firs
 }
 ```
 
-### ProjectFlow
+### Project Flow
 - This application inserts the sales data in the database.
 - Data to be inserted into the sales table can be single or could be multiple.
 - It allows complex query to track the progress of sales agent.
