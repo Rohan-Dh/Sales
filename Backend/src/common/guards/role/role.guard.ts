@@ -1,9 +1,6 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { AuthUser } from '../../../features/auth/interface/auth.user.interface';
-import { InjectRepository } from '@nestjs/typeorm';
 import { Reflector } from '@nestjs/core';
-import { Role } from '../../../database/entities/role.entity';
-import { Repository } from 'typeorm';
 import { ROLES_KEY } from '../../decorators/auth.decorator';
 import {Request} from 'express';
 
@@ -29,13 +26,13 @@ export class RoleGuard implements CanActivate {
 
     if (user === undefined) return false;
 
-    console.log(user.roles);
+    // console.log(user.roles);
 
     const userRoles: string[] = user?.roles ?? [];
 
-    console.log(requiredRoles, userRoles);
+    // console.log(requiredRoles, userRoles);
 
-    console.log(requiredRoles.some((r) => userRoles.includes(r)));
+    // console.log(requiredRoles.some((r) => userRoles.includes(r)));
     return requiredRoles.some((r) => userRoles.includes(r));
   }
 }

@@ -49,7 +49,7 @@ export class AuthController {
   ) {
     const oldRefreshToken: string | undefined = req.cookies?.refreshToken;
 
-    console.log(oldRefreshToken);
+    // console.log(oldRefreshToken);
 
     if (!oldRefreshToken)
       throw new UnauthorizedException('Missing refresh token');

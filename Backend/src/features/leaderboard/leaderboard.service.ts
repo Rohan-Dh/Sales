@@ -36,7 +36,7 @@ export class LeaderboardService extends LeaderboardContract {
     let prevAmount: number | null = null;
 
     return data.map((r) => {
-      console.log(r);
+      // console.log(r);
       const amount = Number(r.totalSalesAmount);
       if (prevAmount === null || amount !== prevAmount) rank += 1;
       prevAmount = amount;

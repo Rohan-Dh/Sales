@@ -5,7 +5,6 @@ import { Permission } from '../../../database/entities/permission.entity';
 import { Repository } from 'typeorm';
 import { Request } from 'express';
 import { AuthUser } from '../../../features/auth/interface/auth.user.interface';
-import { Role } from '../../../database/entities/role.entity';
 import { PERMS_KEY } from '../../decorators/auth.decorator';
 
 @Injectable()
@@ -14,7 +13,6 @@ export class PermissionGuard implements CanActivate {
     private readonly reflector: Reflector,
     @InjectRepository(Permission)
     private readonly permRepo: Repository<Permission>,
-    @InjectRepository(Role) private readonly roleRepo: Repository<Role>,
   ) {}
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const requiredPerm = this.reflector.getAllAndOverride<string[]>(PERMS_KEY, [
@@ -22,7 +20,7 @@ export class PermissionGuard implements CanActivate {
       context.getClass(),
     ]);
 
-    console.log("hello");
+    // console.log("hello");
 
     if (!requiredPerm) return true;
 
@@ -45,7 +43,7 @@ export class PermissionGuard implements CanActivate {
 
     const userPermissionCodes = dbPermissions.map((p) => p.code.toUpperCase());
 
-    console.log(userPermissionCodes);
+    // console.log(userPermissionCodes);
 
     return requiredPerm.some((p) =>
       userPermissionCodes.includes(p.toUpperCase()),

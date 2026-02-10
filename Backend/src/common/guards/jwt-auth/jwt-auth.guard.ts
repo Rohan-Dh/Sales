@@ -46,7 +46,7 @@ export class JwtAuthGuard implements CanActivate {
       if(type === 'Bearer') return token;
     }
 
-    console.log(req.cookies.accessToken);
+    // console.log(req.cookies.accessToken);
     return (req as any).cookies?.accessToken ?? null;
   }
 }
