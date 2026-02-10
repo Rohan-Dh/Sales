@@ -4,9 +4,12 @@ import { LeaderboardService } from './leaderboard.service';
 import LeaderboardContract from './contract/leaderboard.contract';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Sales } from '../../database/entities/sales.entity';
+import { Role } from '../../database/entities/role.entity';
+import { User } from '../../database/entities/user.entity';
+import { Permission } from '../../database/entities/permission.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Sales])],
+  imports: [TypeOrmModule.forFeature([Sales, Role, Permission, User])],
   controllers: [  LeaderboardController],
   providers: [
     {

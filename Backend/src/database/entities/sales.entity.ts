@@ -1,18 +1,26 @@
-import { Column, CreateDateColumn, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { User } from './user.entity';
 
-@Entity({name: "sales"})
-@Index(['agentName'])
-export class  Sales {
+@Entity({ name: 'sales' })
+export class Sales {
   @PrimaryGeneratedColumn()
-  id: string;
+  id: number;
 
-  @Column({type: 'text'})
-  agentName: string;
+  @ManyToOne(() => User, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'userId' })
+  user: User;
 
-  @Column({type: 'numeric', precision: 18, scale: 2})
+  @Column({ type: 'numeric', precision: 18, scale: 2 })
   amountSold: string;
 
-  @Column({type: 'int'})
+  @Column({ type: 'int' })
   salesCount: number;
 
   @CreateDateColumn()

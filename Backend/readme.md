@@ -55,34 +55,55 @@ npm run dev
 So, with this and docker installed in your desktop you can now access to this application. 
 You can see the API swagger documentation to go through the features implemented.
 
+NOTE: Whenever you call `npm run dev` at first you will be connected to redis and postgreSql. After that,
+database will be seeded by first droping all the database table and then seed with fresh data
+
+```bash
+Role                       Permission
+ADMIN                      All available permission 
+AGENT                      CREATE_SINGLE_ENTRY permission
+```
+
+```bash
+user signning through "/auth/signup" will be Agent
+user signning through "/auth/admin-signup" will be Admin
+```
+---
+
 ### API Documentation
 while running the local server. Goto `http://localhost:3000/swagger/api` to get access to the swagger documentation.
 There you can have the list of api made for this project.
+
+---
 
 ### Seed the Data
 With the swagger. Use the api endpoint `/sales/batch` to seed these data at first.
 ```bash
 {
   "records": [
-    { "agentName": "Ram Sharma", "amountSold": 200000, "salesCount": 5 },
-    { "agentName": "Ram Sharma", "amountSold": 150000, "salesCount": 3 },
-    { "agentName": "Ram Sharma", "amountSold": 50000, "salesCount": 2 },
+    { "userId": 1, "amountSold": 200000, "salesCount": 5 },
+    { "userId": 1, "amountSold": 150000, "salesCount": 3 },
+    { "userId": 1, "amountSold": 50000, "salesCount": 2 },
 
-    { "agentName": "Sita Karki", "amountSold": 300000, "salesCount": 7 },
-    { "agentName": "Sita Karki", "amountSold": 120000, "salesCount": 5 },
+    { "userId": 2, "amountSold": 300000, "salesCount": 7 },
+    { "userId": 2, "amountSold": 120000, "salesCount": 5 },
 
-    { "agentName": "Hari Joshi", "amountSold": 420000, "salesCount": 12 },
+    { "userId": 3, "amountSold": 420000, "salesCount": 12 },
 
-    { "agentName": "Nisha Thapa", "amountSold": 100000, "salesCount": 2 },
-    { "agentName": "Nisha Thapa", "amountSold": 150000, "salesCount": 4 },
-    { "agentName": "Nisha Thapa", "amountSold": 170000, "salesCount": 6 },
+    { "userId": 4, "amountSold": 100000, "salesCount": 2 },
+    { "userId": 4, "amountSold": 150000, "salesCount": 4 },
+    { "userId": 4, "amountSold": 170000, "salesCount": 6 },
 
-    { "agentName": "Bikash Lama", "amountSold": 420000, "salesCount": 10 },
+    { "userId": 5, "amountSold": 420000, "salesCount": 10 },
 
-    { "agentName": "Alina Shrestha", "amountSold": 50000, "salesCount": 1 }
+    { "userId": 6, "amountSold": 50000, "salesCount": 1 }
   ]
 }
 ```
+
+NOTE: Those userId 1,2,3 and all should be first the user at the user table only then will this seed work.
+
+---
 
 ### Project Flow
 - This application inserts the sales data in the database.

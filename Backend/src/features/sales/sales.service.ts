@@ -14,18 +14,20 @@ export class SalesService extends SaleContract {
   }
   async createOne(dto: CreateSaleDto): Promise<Sales> {
     const sale = this.saleRepo.create({
-      agentName: dto.agentName.trim(),
+      user: {id: dto.userId},
       amountSold: dto.amountSold.toFixed(2),
       salesCount: dto.salesCount,
     });
     return this.saleRepo.save(sale);
   }
   createMany(records: CreateSaleDto[]): Promise<Sales[]> {
-    const entities = records.map((dto) => this.saleRepo.create({
-      agentName: dto.agentName.trim(),
-      amountSold: dto.amountSold.toFixed(2),
-      salesCount: dto.salesCount,
-    }));
+    const entities = records.map((dto) =>
+      this.saleRepo.create({
+        user: { id: dto.userId },
+        amountSold: dto.amountSold.toFixed(2),
+        salesCount: dto.salesCount,
+      }),
+    );
     return this.saleRepo.save(entities);
   }
 }

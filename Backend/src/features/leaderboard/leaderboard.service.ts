@@ -15,10 +15,11 @@ export class LeaderboardService extends LeaderboardContract {
   async getLeaderBoard(limit: number = 50, offset: number = 0): Promise<LeaderboardRow[]> {
     const data = await this.saleRepo
       .createQueryBuilder('s')
-      .select('s.agentName', 'agentName')
+      .leftJoin('s.user', 'u')
+      .select('u.name', 'agentName')
       .addSelect('SUM(s.amountSold)', 'totalSalesAmount')
       .addSelect('SUM(s.salesCount)', 'totalSalesCount')
-      .groupBy('s.agentName')
+      .groupBy('u.name')
       .orderBy('"totalSalesAmount"', 'DESC')
       .addOrderBy('"agentName"', 'ASC')
       .limit(limit)
